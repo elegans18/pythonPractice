@@ -60,3 +60,10 @@ for headline in headlines:
 
 print(news_ticker)
 """
+"""
+cities=['istanbul','ankara','bursa','rzeszow']
+
+capitilized_cities=[city.title() for city in cities]
+
+print(capitilized_cities)
+"""
