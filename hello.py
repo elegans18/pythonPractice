@@ -67,3 +67,58 @@ capitilized_cities=[city.title() for city in cities]
 
 print(capitilized_cities)
 """
+"""
+def cylinder_volume(height,radius):
+    pi=3.14
+    return height*pi*radius**2
+
+#print(cylinder_volume(10,6))"""
+"""
+def date(days):
+    day=days//7
+    remains=days%7
+    return "{} weeks {} days".format(day,remains)
+
+print(date(10))"""
+
+
+#name = input('Enter a name : ')
+#print('Hello',name.title())
+"""
+names = input("Enter names separated by commas: ").title().split(",")
+assignments = input("Enter assignment counts separated by commas: ").split(",")
+grades = input("Enter grades separated by commas: ").split(",")
+
+message = "Hi {},\n\nThis is a reminder that you have {} assignments left to \
+submit before you can graduate. You're current grade is {} and can increase \
+to {} if you submit all assignments before the due date.\n\n"
+
+for name, assignment, grade in zip(names, assignments, grades):
+    print(message.format(name, assignment, grade, int(grade) + int(assignment)*2))
+"""
+"""
+class Classy(object):
+    def __init__(self):
+        self.items = []
+
+    def addItem(self, item):
+        self.items.append(item)
+
+    def getClassiness(self):
+        classiness = 0
+        if len(self.items) > 0:
+            for item in self.items:
+                if item == "tophat":
+                    classiness += 2
+                elif item == "bowtie":
+                    classiness += 4
+                elif item == "monocle":
+                    classiness += 5
+        return classiness
+
+me=Classy()
+me.addItem("bowtie")
+deneme=me.getClassiness()
+print(deneme)
+
+"""
