@@ -122,3 +122,107 @@ deneme=me.getClassiness()
 print(deneme)
 
 """
+
+"""
+def year2Century(year):
+
+    str_year = str(year)
+    
+    if(len(str_year)<3):
+        return 1
+    elif(len(str_year) == 3):
+        if(str_year[1:3] == "00"):  # 100 ,200 300, 400 ... 900
+            return int(str_year[0])
+        else:                       # 190, 250, 450
+            return int(str_year[0])+1
+    else:                           # 1750, 1700, 1805
+        if(str_year[2:4]=="00"):    # 1700, 1900, 1100
+            return int(str_year[:2])
+        else:                       # 1705, 1645, 1258
+            return int(str_year[:2])+1
+
+print(year2Century(int(input("Bir yıl giriniz: "))))
+    
+"""
+
+"""
+liste = [1,2,3,4,5,6,4,23,67,21,-500,23,451,67]
+
+temp=9999
+
+for item in liste:
+    if(item<temp):
+        temp=item
+    else:
+        continue
+
+print(temp)
+"""
+
+class Element(object):
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class LinkedList(object):
+    def __init__(self, head=None):
+        self.head = head
+
+    def append(self, new_element):
+        current = self.head
+        if self.head:
+            while current.next:
+                current = current.next
+            current.next = new_element
+        else:
+            self.head = new_element
+
+    def get_position(self, position):
+        counter = 1
+        current = self.head
+        if position < 1:
+            return None
+        while current and counter <= position:
+            if counter == position:
+                return current
+            current = current.next
+            counter += 1
+        return None
+
+    def insert(self, new_element, position):
+        counter = 1
+        current = self.head
+        if position > 1:
+            while current and counter < position:
+                if counter == position - 1:
+                    new_element.next = current.next
+                    current.next = new_element
+                current = current.next
+                counter += 1
+        elif position == 1:
+            new_element.next = self.head
+            self.head = new_element
+
+    def delete(self, value):
+        current = self.head
+        previous = None
+        while current.value != value and current.next:
+            previous = current
+            current = current.next
+        if current.value == value:
+            if previous:
+                previous.next = current.next
+            else:
+                self.head = current.next
+
+
+e1=Element(1)
+e2=Element(2)
+e3=Element(3)
+
+l1=LinkedList(e1)
+l1.append(e2)
+l1.append(e3)
+
+a=l1.get_position(2)
+print(l1.head.next.next.value)
