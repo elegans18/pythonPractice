@@ -158,7 +158,7 @@ for item in liste:
 
 print(temp)
 """
-
+"""
 class Element(object):
     def __init__(self, value):
         self.value = value
@@ -226,3 +226,55 @@ l1.append(e3)
 
 a=l1.get_position(2)
 print(l1.head.next.next.value)
+"""
+"""
+def binarySearch(listData,value):
+    low=0
+    high=len(listData)-1
+    while(low<=high):
+        mid=int((low+high)/2)
+        if(listData[mid]==value):
+            return mid
+        elif(listData[mid]<value):
+            low=mid+1
+        else:
+            high = mid-1
+    return -1
+
+list=[1,4,6,7,11,15,20]
+value=int(input("Bir değer giriniz: "))
+print(binarySearch(list,value))"""
+
+
+import numpy as np
+import pandas as pd 
+import requests
+import json
+
+#url="https://wind-bow.glitch.me/twitch-api/channels/freecodecamp"
+#JSONContent=requests.get(url).json()
+#content=json.dumps(JSONContent,indent=4,sort_keys=True)
+#print(content)
+
+
+# List of channels we want to access
+channels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas",
+            "ninja", "shroud", "Dakotaz", "esltv_cs", "pokimane", "tsm_bjergsen", "boxbox", "wtcn", "a_seagull",
+           "kinggothalion", "amazhs", "jahrein", "thenadeshot", "sivhd", "kingrichard"]
+
+channels_list = []
+# For each channel, we access its information through its API
+for channel in channels:
+    JSONContent = requests.get("https://wind-bow.glitch.me/twitch-api/channels/" + channel).json()
+    channels_list.append([JSONContent['_id'], JSONContent['display_name'], JSONContent['status'],
+                         JSONContent['followers'], JSONContent['views']])
+
+
+
+dataset = pd.DataFrame(channels_list)
+dataset.columns = ['Id', 'Name', 'Status', 'Followers', 'Views']
+dataset.dropna(axis = 0, how = 'any', inplace = True)
+dataset.index = pd.RangeIndex(len(dataset.index))
+a= dataset.sample(5)
+dataset.to_csv('deneme.cvs', sep='\t', encoding='utf-8')
+print(a)
